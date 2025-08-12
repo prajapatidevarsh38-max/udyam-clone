@@ -1,0 +1,44 @@
+[
+  {
+    "id": "aadhaar",
+    "label": "Aadhaar Number",
+    "type": "text",
+    "required": true,
+    "pattern": "^\\d{12}$",
+    "placeholder": "Enter 12-digit Aadhaar"
+  },
+  {
+    "id": "otp",
+    "label": "Aadhaar OTP",
+    "type": "text",
+    "required": true,
+    "pattern": "^\\d{6}$",
+    "placeholder": "Enter 6-digit OTP"
+  },
+  {
+    "id": "pan",
+    "label": "PAN Number",
+    "type": "text",
+    "required": false,
+    "pattern": "^[A-Za-z]{5}[0-9]{4}[A-Za-z]$",
+    "placeholder": "ABCDE1234F"
+  },
+  {
+    "id": "name",
+    "label": "Full Name",
+    "type": "text",
+    "required": false
+  },
+  {
+    "id": "email",
+    "label": "Email",
+    "type": "email",
+    "required": false
+  },
+  {
+    "id": "mobile",
+    "label": "Mobile Number",
+    "type": "text",
+    "required": false
+  }
+]

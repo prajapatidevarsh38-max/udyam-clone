@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ctl00_ContentPlaceHolder1_txtadharno",
+    "name": "ctl00$ContentPlaceHolder1$txtadharno",
+    "type": "text",
+    "label": "Your Aadhaar No",
+    "required": false,
+    "pattern": null,
+    "placeholder": "Your Aadhaar No"
+  },
+  {
+    "id": "ctl00_ContentPlaceHolder1_txtownername",
+    "name": "ctl00$ContentPlaceHolder1$txtownername",
+    "type": "text",
+    "label": "Name as per Aadhaar",
+    "required": false,
+    "pattern": null,
+    "placeholder": "Name as per Aadhaar"
+  },
+  {
+    "id": "ctl00_ContentPlaceHolder1_chkDecarationA",
+    "name": "ctl00$ContentPlaceHolder1$chkDecarationA",
+    "type": "checkbox",
+    "label": "ctl00$ContentPlaceHolder1$chkDecarationA",
+    "required": false,
+    "pattern": null,
+    "placeholder": null
+  },
+  {
+    "id": "ctl00_ContentPlaceHolder1_btnValidateAadhaar",
+    "name": "ctl00$ContentPlaceHolder1$btnValidateAadhaar",
+    "type": "submit",
+    "label": "ctl00$ContentPlaceHolder1$btnValidateAadhaar",
+    "required": false,
+    "pattern": null,
+    "placeholder": null
+  },
+  {
+    "id": "checkbox",
+    "name": "checkbox",
+    "type": "checkbox",
+    "label": "",
+    "required": false,
+    "pattern": null,
+    "placeholder": null
+  }
+]
