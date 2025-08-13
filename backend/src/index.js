@@ -9,6 +9,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const path = require('path');
+
+app.get('/api/schema', (req, res) => {
+  res.sendFile(path.join(__dirname, '../schema/udyam_schema.json'));
+});
+
 // simple API route for health
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
