@@ -6,7 +6,11 @@ const { registrationSchema } = require('./validators');
 
 const prisma = new PrismaClient();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // for testing; restrict later to your Vercel URL
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 // simple API route for health
