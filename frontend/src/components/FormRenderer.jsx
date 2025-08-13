@@ -5,6 +5,21 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
   const [errors, setErrors] = useState({});
   const [otpSent, setOtpSent] = useState(false);
 
+  fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData)
+})
+.then(res => res.json())
+.then(data => {
+  alert('Form submitted successfully!');
+  console.log(data);
+})
+.catch(err => {
+  console.error('Error submitting form:', err);
+  alert('Failed to submit form');
+});
+  
   useEffect(() => {
     const init = {};
     schema.forEach(f => init[f.id] = initialData[f.id] || '');
