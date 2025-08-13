@@ -5,11 +5,12 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
   const [errors, setErrors] = useState({});
   const [otpSent, setOtpSent] = useState(false);
 
+  
   useEffect(() => {
     const init = {};
     schema.forEach(f => init[f.id] = initialData[f.id] || '');
     setForm(init);
-  }, [schema, initialData]);
+  }, [schema]);
 
   const validateField = (f, val) => {
     if (f.required && !val) return 'Required';
@@ -32,8 +33,9 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
   };
 
   const handleSendOtp = () => {
+    // simulate OTP send
     setOtpSent(true);
-    alert('Simulated OTP sent to registered mobile. Use 123456 as OTP.');
+    alert('Simulated OTP sent to registered mobile (not actually sent). Use 123456 as OTP in tests.');
   };
 
   const handleNext = () => {
@@ -57,21 +59,6 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
     });
     setErrors(errs);
     if (Object.keys(errs).length) return;
-
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || apiUrl}/api/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      const data = await res.json();
-      alert('Form submitted successfully!');
-      console.log(data);
-    } catch (err) {
-      console.error('Error submitting form:', err);
-      alert('Failed to submit form');
-    }
-
     if (onSubmit) await onSubmit(form);
   };
 
@@ -79,19 +66,16 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
     <form className="form" onSubmit={handleSubmit}>
       {schema.map(f => (
         <div className="field" key={f.id}>
-          <label htmlFor={f.id}>
-            {f.label}{f.required ? '*' : ''}
-          </label>
+          <label htmlFor={f.id}>{f.label}{f.required ? '*' : ''}</label>
           <input
             id={f.id}
             name={f.id}
-            type={f.type || 'text'}
+            type={f.type === 'text' ? 'text' : (f.type || 'text')}
             value={form[f.id] || ''}
             placeholder={f.placeholder || ''}
             onChange={e => handleChange(f.id, e.target.value)}
           />
           {errors[f.id] && <div className="error">{errors[f.id]}</div>}
-
           {f.id === 'aadhaar' && simulateOtp && (
             <div className="otp-actions">
               <button type="button" onClick={handleSendOtp}>Send OTP (simulate)</button>
