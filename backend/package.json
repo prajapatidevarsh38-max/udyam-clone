@@ -16,5 +16,9 @@
     "jest": "^30.0.5",
     "supertest": "^7.1.4",
     "zod": "^4.0.17"
-  }
+  },
+  "scripts": {
+  "start": "node src/index.js",
+  "postinstall": "npx prisma generate"
+}
 }
