@@ -14,4 +14,8 @@ const registrationSchema = z.object({
   state: z.string().optional()
 });
 
+app.get('/api/schema', (req, res) => {
+  res.json(schema);
+});
+
 module.exports = { registrationSchema };
