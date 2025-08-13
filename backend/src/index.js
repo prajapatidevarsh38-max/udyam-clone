@@ -13,9 +13,21 @@ app.use(express.json());
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 // Serve schema (if you want to serve a static schema for frontend)
+const udyamSchema = [
+  { id: "aadhaar", label: "Aadhaar Number", type: "text", required: true, pattern: "^\\d{12}$" },
+  { id: "aadhaar_otp", label: "OTP", type: "text", required: true, pattern: "^\\d{6}$" },
+  { id: "pan", label: "PAN", type: "text", required: true, pattern: "^[A-Za-z]{5}[0-9]{4}[A-Za-z]$" },
+  { id: "name", label: "Name of Entrepreneur", type: "text", required: true },
+  { id: "email", label: "Email Address", type: "email", required: true },
+  { id: "mobile", label: "Mobile Number", type: "text", required: true, pattern: "^\\d{10}$" },
+  { id: "pin", label: "PIN Code", type: "text", required: true, pattern: "^\\d{6}$" },
+  { id: "city", label: "City", type: "text", required: true },
+  { id: "state", label: "State", type: "text", required: true }
+  // Add any additional fields needed for Step 1 & 2
+];
+
 app.get('/api/schema', (req, res) => {
-  // Optionally, serve a cleaned schema file located in backend/schema/
-  res.sendFile(require('path').resolve(__dirname, '../schema/udyam_schema.json'));
+  res.json(udyamSchema);
 });
 
 // Register endpoint
