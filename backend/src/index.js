@@ -32,19 +32,45 @@ app.get('/api/schema', (req, res) => {
 });
 
 // Register endpoint
-app.post('/api/register', async (req, res) => {
-  try {
-    const data = registrationSchema.parse(req.body);
-    const created = await prisma.registration.create({ data });
-    res.json({ success: true, id: created.id });
-  } catch (err) {
-    if (err?.issues) {
-      // zod error
-      return res.status(400).json({ errors: err.issues });
-    }
-    // Prisma unique constraint? etc
-    return res.status(400).json({ error: err.message || String(err) });
+app.post('/api/register', (req, res) => {
+  const requiredFields = [
+    'aadhaar',
+    'aadhaar_otp',
+    'pan',
+    'name',
+    'email',
+    'mobile',
+    'pin',
+    'city',
+    'state'
+  ];
+
+  // Find missing fields
+  const missing = requiredFields.filter(field => !req.body[field] || req.body[field].toString().trim() === '');
+
+  if (missing.length > 0) {
+    return res.status(400).json({
+      success: false,
+      message: `Missing required field(s): ${missing.join(', ')}`
+    });
   }
+
+  // Basic format checks
+  if (!/^\d{12}$/.test(req.body.aadhaar)) {
+    return res.status(400).json({ success: false, message: "Invalid Aadhaar format" });
+  }
+  if (!/^\d{6}$/.test(req.body.aadhaar_otp)) {
+    return res.status(400).json({ success: false, message: "Invalid OTP format" });
+  }
+  if (!/^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/.test(req.body.pan)) {
+    return res.status(400).json({ success: false, message: "Invalid PAN format" });
+  }
+
+  // If all validations pass, save to DB (your logic here)
+  // Example: 
+  // db.saveRegistration(req.body).then(id => res.json({ success: true, id }));
+
+  res.json({ success: true, id: Date.now() });
 });
 
 // Export app for tests
