@@ -16,8 +16,9 @@ export default function App() {
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   // Partition schema into step1 (aadhaar+otp) and step2 (others)
-  const step1 = schema.filter(f => f.id === 'aadhaar' || f.id === 'otp');
-  const step2 = schema.filter(f => f.id !== 'aadhaar' && f.id !== 'otp');
+const step1 = schema.filter(f => f.id === 'aadhaar' || f.id === 'aadhaar_otp');
+const step2 = schema.filter(f => f.id !== 'aadhaar' && f.id !== 'aadhaar_otp');
+
 
   const [collected, setCollected] = useState({});
 
