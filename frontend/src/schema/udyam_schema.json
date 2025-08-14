@@ -4,41 +4,58 @@
     "label": "Aadhaar Number",
     "type": "text",
     "required": true,
-    "pattern": "^\\d{12}$",
-    "placeholder": "Enter 12-digit Aadhaar"
+    "pattern": "^\\d{12}$"
   },
   {
-    "id": "otp",
-    "label": "Aadhaar OTP",
+    "id": "aadhaar_otp",
+    "label": "OTP",
     "type": "text",
     "required": true,
-    "pattern": "^\\d{6}$",
-    "placeholder": "Enter 6-digit OTP"
+    "pattern": "^\\d{6}$"
   },
   {
     "id": "pan",
-    "label": "PAN Number",
+    "label": "PAN",
     "type": "text",
-    "required": false,
-    "pattern": "^[A-Za-z]{5}[0-9]{4}[A-Za-z]$",
-    "placeholder": "ABCDE1234F"
+    "required": true,
+    "pattern": "^[A-Za-z]{5}[0-9]{4}[A-Za-z]$"
   },
   {
     "id": "name",
-    "label": "Full Name",
+    "label": "Name of Entrepreneur",
     "type": "text",
-    "required": false
+    "required": true
   },
   {
     "id": "email",
-    "label": "Email",
+    "label": "Email Address",
     "type": "email",
-    "required": false
+    "required": true
   },
   {
     "id": "mobile",
     "label": "Mobile Number",
     "type": "text",
-    "required": false
+    "required": true,
+    "pattern": "^\\d{10}$"
+  },
+  {
+    "id": "pin",
+    "label": "PIN Code",
+    "type": "text",
+    "required": true,
+    "pattern": "^\\d{6}$"
+  },
+  {
+    "id": "city",
+    "label": "City",
+    "type": "text",
+    "required": true
+  },
+  {
+    "id": "state",
+    "label": "State",
+    "type": "text",
+    "required": true
   }
 ]
