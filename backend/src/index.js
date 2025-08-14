@@ -24,9 +24,6 @@ const udyamSchema = [
   { id: "name", label: "Name of Entrepreneur", type: "text", required: true },
   { id: "email", label: "Email Address", type: "email", required: true },
   { id: "mobile", label: "Mobile Number", type: "text", required: true, pattern: "^\\d{10}$" },
-  { id: "pin", label: "PIN Code", type: "text", required: true, pattern: "^\\d{6}$" },
-  { id: "city", label: "City", type: "text", required: true },
-  { id: "state", label: "State", type: "text", required: true }
   // Add any additional fields needed for Step 1 & 2
 ];
 
