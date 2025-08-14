@@ -22,7 +22,7 @@
   },
   {
     "id": "name",
-    "label": "Name of Entrepreneur",
+    "label": "Full Name",
     "type": "text",
     "required": true
   },
@@ -39,23 +39,4 @@
     "required": true,
     "pattern": "^\\d{10}$"
   },
-  {
-    "id": "pin",
-    "label": "PIN Code",
-    "type": "text",
-    "required": true,
-    "pattern": "^\\d{6}$"
-  },
-  {
-    "id": "city",
-    "label": "City",
-    "type": "text",
-    "required": true
-  },
-  {
-    "id": "state",
-    "label": "State",
-    "type": "text",
-    "required": true
-  }
 ]
