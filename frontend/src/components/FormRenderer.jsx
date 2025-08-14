@@ -50,17 +50,39 @@ export default function FormRenderer({ schema, initialData = {}, onNext, onBack,
     }
   };
 
-  const handleSubmit = async (e) => {
-    e?.preventDefault?.();
-    const errs = {};
-    schema.forEach(f => {
-      const e2 = validateField(f, form[f.id]);
-      if (e2) errs[f.id] = e2;
+const handleSubmit = async (e) => {
+  e?.preventDefault?.();
+  
+  // Validate all fields before submit
+  const errs = {};
+  schema.forEach(f => {
+    const e2 = validateField(f, form[f.id]);
+    if (e2) errs[f.id] = e2;
+  });
+  setErrors(errs);
+  
+  if (Object.keys(errs).length) return;
+
+  try {
+    const res = await fetch(`${apiUrl}/api/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form)
     });
-    setErrors(errs);
-    if (Object.keys(errs).length) return;
-    if (onSubmit) await onSubmit(form);
-  };
+
+    if (!res.ok) {
+      throw new Error(`Server error: ${res.status}`);
+    }
+
+    const data = await res.json();
+    alert('✅ Form submitted successfully!');
+    console.log('Server response:', data);
+  } catch (err) {
+    console.error('❌ Error submitting form:', err);
+    alert('❌ Failed to submit form. Check console for details.');
+  }
+};
+
 
   return (
     <form className="form" onSubmit={handleSubmit}>
